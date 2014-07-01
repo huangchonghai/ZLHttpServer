@@ -79,14 +79,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\HttpLog.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\StopWatch.cpp" />
     <ClCompile Include="src\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Define.h" />
+    <ClInclude Include="include\HttpLog.h" />
     <ClInclude Include="include\OsDefine.h" />
     <ClInclude Include="include\Singleton.h" />
     <ClInclude Include="include\Socket.h" />
+    <ClInclude Include="include\StopWatch.h" />
     <ClInclude Include="include\Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

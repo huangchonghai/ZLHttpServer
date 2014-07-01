@@ -30,75 +30,75 @@ class Singleton
 public:
 	static T *GetInstancePtr()
 	{
-		if (0 == m_proxy.m_Instance)
+		if (0 == proxy_.instance_)
 		{
 			CreateInstance();
 		}
-		return m_proxy.m_Instance;
+		return proxy_.instance_;
 	}
 
 	static T& GetInstanceRef()
 	{
-		if (0 == m_proxy.m_Instance)
+		if (0 == proxy_.instance_)
 		{
 			CreateInstance();
 		}
-		return *(m_proxy.m_Instance);
+		return *(proxy_.instance_);
 	}
 
 	static bool	CleanInstance()
 	{
-		if (m_proxy.m_Instance)
+		if (proxy_.instance_)
 		{
-			delete m_proxy.m_Instance;
-			m_proxy.m_Instance = 0;
+			delete proxy_.instance_;
+			proxy_.instance_ = 0;
 		}
 		return true;
 	}
 private:
 	static void CreateInstance()
 	{
-		m_proxy.CreateInstance();
+		proxy_.CreateInstance();
 	}
 private:
 	struct Proxy
 	{
-		Proxy() : m_Instance(0)
+		Proxy() : instance_(0)
 		{	}
 
 		~Proxy()
 		{
-			if (m_Instance)
+			if (instance_)
 			{
-				delete m_Instance;
-				m_Instance = 0;
+				delete instance_;
+				instance_ = 0;
 			}
 		}
 
 		void CreateInstance()
 		{
-			if (0 == m_Instance)
+			if (0 == instance_)
 			{
-				std::lock_guard<std::mutex> guard(m_lock);
-				if (0 == m_Instance)
+				std::lock_guard<std::mutex> guard(lock_);
+				if (0 == instance_)
 				{
-					m_Instance = new T;
+					instance_ = new T;
 				}
 			}
 		}
 
-		T *m_Instance;	
-		std::mutex m_lock;
+		T *instance_;	
+		std::mutex lock_;
 	};
 protected:
 	Singleton()  {	}
 	~Singleton() {	}
 private:
-	static Proxy m_proxy;
+	static Proxy proxy_;
 };
 
 template < typename T >
-typename Singleton<T>::Proxy Singleton<T>::m_proxy;
+typename Singleton<T>::Proxy Singleton<T>::proxy_;
 
 NAMESPACE_ZL_END
 
