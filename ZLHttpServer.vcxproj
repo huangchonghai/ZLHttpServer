@@ -88,6 +88,7 @@
   <ItemGroup>
     <ClInclude Include="include\Define.h" />
     <ClInclude Include="include\HttpLog.h" />
+    <ClInclude Include="include\HttpProtocol.h" />
     <ClInclude Include="include\NonCopy.h" />
     <ClInclude Include="include\OsDefine.h" />
     <ClInclude Include="include\Singleton.h" />

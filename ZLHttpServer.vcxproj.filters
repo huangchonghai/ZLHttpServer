@@ -56,5 +56,8 @@
     <ClInclude Include="include\NonCopy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\HttpProtocol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
