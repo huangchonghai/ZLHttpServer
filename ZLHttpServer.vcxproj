@@ -81,12 +81,14 @@
   <ItemGroup>
     <ClCompile Include="src\HttpLog.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Socket.cpp" />
     <ClCompile Include="src\StopWatch.cpp" />
     <ClCompile Include="src\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Define.h" />
     <ClInclude Include="include\HttpLog.h" />
+    <ClInclude Include="include\NonCopy.h" />
     <ClInclude Include="include\OsDefine.h" />
     <ClInclude Include="include\Singleton.h" />
     <ClInclude Include="include\Socket.h" />
