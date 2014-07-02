@@ -79,6 +79,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\HttpKeyValue.cpp" />
     <ClCompile Include="src\HttpLog.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Socket.cpp" />
@@ -87,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Define.h" />
+    <ClInclude Include="include\HttpKeyValue.h" />
     <ClInclude Include="include\HttpLog.h" />
     <ClInclude Include="include\HttpProtocol.h" />
     <ClInclude Include="include\NonCopy.h" />
