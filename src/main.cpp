@@ -15,6 +15,5 @@ void test_log()
 
 int main()
 {
-
 	return 0;
 }

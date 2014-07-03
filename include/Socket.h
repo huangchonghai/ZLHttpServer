@@ -12,6 +12,7 @@
 #ifndef ZL_SOCKET_H
 #define ZL_SOCKET_H
 
+#include "Define.h"
 #include "OsDefine.h"
 #ifdef OS_WINDOWS
 #include <winsock2.h>
@@ -25,6 +26,7 @@
 #include <netdb.h>
 #include <netinet/tcp.h>
 #include <arpa/inet.h>
+#include <fcntl.h>
 #include <sys/utsname.h>
 #include <unistd.h>
 #endif
@@ -101,6 +103,32 @@ typedef socklen_t  ZL_SOCKLEN;
 
 bool zl_socket_startup();
 bool zl_socket_cleanup();
-void zl_socket_create();
+
+class Socket
+{
+public:
+	Socket();
+	virtual ~Socket();
+public:
+	// Server initialization
+	bool Create();
+	bool Bind(const int port);
+	bool Listen(int listenNum) const;
+	bool Accept(Socket&) const;
+	bool IsValid() const { return sockfd_ != ZL_INVALID_SOCKET; }
+	bool SetNonBlocking(const bool);
+
+	// Client initialization
+	bool Connect(const std::string& host, const int port);
+
+	// Data Transimission
+	bool Send(const std::string&) const;
+	int  Recv(std::string&) const;
+
+protected:
+	ZL_SOCKET       sockfd_;
+	ZL_SOCKADDR_IN  sockaddr_;
+};
+
 
 #endif  /* ZL_SOCKET_H */
