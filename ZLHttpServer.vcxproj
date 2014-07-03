@@ -83,7 +83,6 @@
     <ClCompile Include="src\HttpLog.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Socket.cpp" />
-    <ClCompile Include="src\StopWatch.cpp" />
     <ClCompile Include="src\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
