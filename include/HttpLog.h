@@ -4,27 +4,25 @@
 2013-09-25 21:02:15
 lizheng
 ***********************************************************************/
+#include "Define.h"
+#include <stdio.h>
 
-#include <cstdio>
+NAMESPACE_ZL_START
 
-namespace ZL
+class HttpLog
 {
+public:
+	HttpLog(const char *name);
+	~HttpLog();
+public:
+	void Print(char *message, ...);
 
-    class HttpLog
-    {
-    public:
-        HttpLog(const char *name);
-        ~HttpLog();
+private:
+	FILE   *file_;
+};
 
-    public:
-        void Print(char *message, ...);
+extern HttpLog		g_httplog;
 
-    private:
-        FILE   *file_;
-    };
-
-    extern HttpLog		g_httplog;
-
-} /* namespace ZL */
+NAMESPACE_ZL_END
 
 #endif
