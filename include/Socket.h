@@ -116,7 +116,8 @@ public:
 	bool Listen(int listenNum) const;
 	bool Accept(Socket&) const;
 	bool IsValid() const { return sockfd_ != ZL_INVALID_SOCKET; }
-	bool SetNonBlocking(const bool);
+	bool SetBlocking();
+	bool SetNonBlocking();
 
 	// Client initialization
 	bool Connect(const std::string& host, const int port);

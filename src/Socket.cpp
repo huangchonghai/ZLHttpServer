@@ -156,7 +156,30 @@ bool Socket::Connect(const std::string& host, int port)
 	return status == 0 ? true : false;
 }
 
-bool Socket::SetNonBlocking(bool b)
+bool Socket::SetBlocking()
+{
+#if defined(OS_WINDOWS)
+	unsigned long ul = 0;
+
+	int ret = ioctlsocket(sockfd_, FIONBIO, (unsigned long *)&ul);//设置成非阻塞模式。  
+
+	if (ret == SOCKET_ERROR)
+		return false;
+
+#elif defined(OS_LINUX)
+	int flags = fcntl(sockfd_, F_GETFL);
+	if (flags < 0)
+		return false;
+
+	flags &= (~O_NONBLOCK);
+	if(fcntl(sockfd_, F_SETFL, flags)!=0)
+		return false;
+#endif
+
+	return true;
+}
+
+bool Socket::SetNonBlocking()
 {
 #if defined(OS_WINDOWS)
 	unsigned long ul = 1;
@@ -168,15 +191,12 @@ bool Socket::SetNonBlocking(bool b)
 
 #elif defined(OS_LINUX)
 	int flags = fcntl(sockfd_, F_GETFL);
-	if (opts < 0)
+	if (flags < 0)
 		return false;
 	
-	if (b)
-		flags = (flags | O_NONBLOCK);
-	else
-		flags = (flags  & ~O_NONBLOCK);
-
-	fcntl(sockfd_, F_SETFL, flags);
+	flags |= O_NONBLOCK;
+	if(fcntl(sockfd_, F_SETFL, flags)!=0)
+		return false;
 #endif
 	
 	return true;
