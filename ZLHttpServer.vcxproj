@@ -79,19 +79,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\ActiveSocket.cpp" />
     <ClCompile Include="src\HttpKeyValue.cpp" />
     <ClCompile Include="src\Log.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\PassiveSocket.cpp" />
     <ClCompile Include="src\Socket.cpp" />
     <ClCompile Include="src\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\ActiveSocket.h" />
     <ClInclude Include="include\Define.h" />
     <ClInclude Include="include\HttpKeyValue.h" />
     <ClInclude Include="include\Log.h" />
     <ClInclude Include="include\HttpProtocol.h" />
     <ClInclude Include="include\NonCopy.h" />
     <ClInclude Include="include\OsDefine.h" />
+    <ClInclude Include="include\PassiveSocket.h" />
     <ClInclude Include="include\Singleton.h" />
     <ClInclude Include="include\Socket.h" />
     <ClInclude Include="include\StopWatch.h" />

@@ -14,6 +14,7 @@
 
 #include "Define.h"
 #include "OsDefine.h"
+#include <exception>
 #ifdef OS_WINDOWS
 #include <winsock2.h>
 #include <ws2tcpip.h>
@@ -31,11 +32,13 @@
 #include <unistd.h>
 #endif
 
+NAMESPACE_ZL_START
+
 #ifdef OS_WINDOWS
-typedef SOCKET ZL_SOCKET;
+typedef SOCKET       ZL_SOCKET;
 typedef SOCKADDR_IN  ZL_SOCKADDR_IN;
-typedef int ZL_SOCKLEN;
-typedef int ssize_t;
+typedef int          ZL_SOCKLEN;
+typedef int          ssize_t;
 
 #define SHUT_RD                   0
 #define SHUT_WR                   1
@@ -68,9 +71,9 @@ typedef int ssize_t;
 #define SOCKET_ERROR_TIMEDOUT     EAGAIN
 
 #elif defined(OS_LINUX)
-typedef int        ZL_SOCKET;
-typedef int        ZL_SOCKADDR_IN;
-typedef socklen_t  ZL_SOCKLEN;
+typedef int          ZL_SOCKET;
+typedef int          ZL_SOCKADDR_IN;
+typedef socklen_t    ZL_SOCKLEN;
 
 #define ZL_CREATE_SOCKET(a,b,c)   socket(a,b,c)
 #define ZL_BIND(a,b,c)            bind(a,b,c)
@@ -112,8 +115,8 @@ public:
 public:
 	// Server initialization
 	bool Create();
-	bool Bind(const int port);
-	bool Listen(int listenNum) const;
+	bool Bind(int port);
+	bool Listen(int listenNum = 5) const;
 	bool Accept(Socket&) const;
 	bool IsValid() const { return sockfd_ != ZL_INVALID_SOCKET; }
 	bool SetBlocking();
@@ -129,7 +132,21 @@ public:
 protected:
 	ZL_SOCKET       sockfd_;
 	ZL_SOCKADDR_IN  sockaddr_;
+
+private:
+	Socket(const Socket&);
+	Socket& operator=(const Socket&);
 };
 
+class SocketException : public std::exception
+{
+public:
+	SocketException(const char* err_msg)
+	{
+		printf("Get Socket Exception: %s\n", err_msg);
+	}
+};
+
+NAMESPACE_ZL_END
 
 #endif  /* ZL_SOCKET_H */

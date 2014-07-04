@@ -1,5 +1,6 @@
 #include "Socket.h"
 
+NAMESPACE_ZL_START
 
 bool zl_socket_startup()
 {
@@ -53,7 +54,7 @@ bool Socket::Create()
 	return true;
 }
 
-bool Socket::Bind(const int port)
+bool Socket::Bind(int port)
 {
 	if (!IsValid())
 	{
@@ -73,7 +74,7 @@ bool Socket::Bind(const int port)
 	return true;
 }
 
-bool Socket::Listen(int listenNum) const
+bool Socket::Listen(int listenNum /*= 5*/) const
 {
 	if (!IsValid())
 	{
@@ -201,3 +202,5 @@ bool Socket::SetNonBlocking()
 	
 	return true;
 }
+
+NAMESPACE_ZL_END
