@@ -35,20 +35,20 @@
 #define Safe_Delete(p)        do { delete p; p = NULL; } while (0);
 #define Safe_Delete_Array(p)  do { delete[] p; p = NULL; } while (0);
 
-//#define ZL_NDEBUG 1
+#define ZL_NDEBUG 1
 #ifdef ZL_NDEBUG
 #define ZL_ASSERT(expr) ((void) 0)
-#define c_assert_place(expr, file, lineno, func) ((void) 0)
+#define ZL_ASSERTEX(expr, file, lineno, func) ((void) 0)
 #else
-#define ZL_ASSERT(expr)                                  \
-			((void) ((expr) ? 0 :                        \
-		    printf("%s:%d: %s:  Assertion `%s' failed.", \
+#define ZL_ASSERT(expr)                                    \
+			((void) ((expr) ? 0 :                          \
+		    printf("%s:%d: %s:  Assertion `%s' failed.\n", \
 			__FILE__, __LINE__, __FUNCTION__, #expr)))
-#define ZL_ASSERTEX(expr, file, lineno, func)            \
-	        ((void) ((expr) ? 0 :                        \
-		    printf("%s:%d: %s: Assertion `%s' failed. "  \
-		    "(called from %s:%d:%s)",                    \
-		     __FILE__, __LINE__, __FUNCTION__, #expr,    \
+#define ZL_ASSERTEX(expr, file, lineno, func)              \
+	        ((void) ((expr) ? 0 :                          \
+		    printf("%s:%d: %s: Assertion `%s' failed. "    \
+		    "(called from %s:%d:%s)\n",                    \
+		     __FILE__, __LINE__, __FUNCTION__, #expr,      \
             file, lineno, func)))
 #endif
 

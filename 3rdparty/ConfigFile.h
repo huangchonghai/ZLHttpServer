@@ -74,7 +74,8 @@ public:
 	    std::ifstream in( filename.c_str() );
         std::locale::global(old_locale);
     	
-	    if( !in ) throw file_not_found( filename ); 
+	    if( !in )
+			throw file_not_found( filename ); 
     	
 	    in >> (*this);
     }
