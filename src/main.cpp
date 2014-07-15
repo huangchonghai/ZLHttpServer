@@ -4,6 +4,7 @@
 #include <string.h>
 #include "ConfigFile.h"
 #include "TcpServer.h"
+#include "HttpServer.h"
 #include "Log.h"
 #include "Define.h"
 
@@ -48,7 +49,8 @@ bool StartServer(const char *configPath)
 	short serverPort = config.read<short>("ServerPort", 80);
 	std::cout << serverIP << ":" << serverPort << "\n";
 
-	ZL::TcpServer server(serverPort);
+	//ZL::TcpServer server(serverPort);
+	ZL::HttpServer server(serverPort);
 	//ZL::Monitor *monitor = new ZL::HttpMonitor(&server);
 	//monitor->Start();
 

@@ -16,7 +16,7 @@
 
 NAMESPACE_ZL_START
 
-class HttpKeyValue : private ZL::Singleton < HttpKeyValue >
+class HttpKeyValue : public ZL::Singleton < HttpKeyValue >
 {
 	DECLARE_SINGLETON_CLASS(HttpKeyValue);
 

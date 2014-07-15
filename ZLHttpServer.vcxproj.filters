@@ -39,6 +39,15 @@
     <ClCompile Include="src\TcpServer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\HttpRequest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HttpResponse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HttpServer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Define.h">
@@ -78,6 +87,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\TcpServer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\HttpRequest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\HttpResponse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\HttpServer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
