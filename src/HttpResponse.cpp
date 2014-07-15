@@ -118,7 +118,7 @@ unsigned long HttpResponse::GetContentLength()
 
 void HttpResponse::ReadBoby()
 {
-	const std::string filepath = "D:\\html\\"+path;
+	const std::string filepath = location_.GetPath();
 	if (!IsFileExist(filepath.c_str()))
 		return ;
 

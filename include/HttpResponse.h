@@ -2,6 +2,7 @@
 #define ZL_HTTPRESPONSE_H
 #include "Define.h"
 #include "HttpProtocol.h"
+#include "Location.h"
 
 NAMESPACE_ZL_START
 
@@ -31,8 +32,8 @@ public:
 	const std::string& GetDocument();
 	void SetDocument(const std::string& document);
 
-	void SetLocation(const std::string& location) { path = location; }
-	const std::string& GetLocation(){ return path; }
+	void SetLocation(const Location& location) { location_ = location; }
+	const Location& GetLocation(){ return location_; }
 
 	unsigned long GetContentLength();
 
@@ -43,7 +44,7 @@ protected:
 
 protected:
 	std::string header;
-	std::string path;
+	Location location_;
 
 	HttpResponseCode status;
 

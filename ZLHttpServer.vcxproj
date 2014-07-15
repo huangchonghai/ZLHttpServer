@@ -84,6 +84,7 @@
     <ClCompile Include="src\HttpRequest.cpp" />
     <ClCompile Include="src\HttpResponse.cpp" />
     <ClCompile Include="src\HttpServer.cpp" />
+    <ClCompile Include="src\Location.cpp" />
     <ClCompile Include="src\Log.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\PassiveSocket.cpp" />
@@ -98,6 +99,7 @@
     <ClInclude Include="include\HttpRequest.h" />
     <ClInclude Include="include\HttpResponse.h" />
     <ClInclude Include="include\HttpServer.h" />
+    <ClInclude Include="include\Location.h" />
     <ClInclude Include="include\Log.h" />
     <ClInclude Include="include\HttpProtocol.h" />
     <ClInclude Include="include\NonCopy.h" />

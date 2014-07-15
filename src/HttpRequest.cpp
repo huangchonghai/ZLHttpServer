@@ -60,7 +60,7 @@ bool HttpRequest::ParseHeader()
 	else if (strcmp(method.c_str(), "delete") == 0)
         SetHttpMethod(HttpMethod::HttpDelete);
 
-	path = token[1]; //location，即是请求的文件路径
+	location.SetRequestURI(token[1]); //location，即是请求的文件路径
     SetHttpVersion(token[2]); //HttpVersion，Client发过来的http协议版本号
 
     /* 解析剩余的选项行 */

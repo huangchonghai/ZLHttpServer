@@ -2,6 +2,7 @@
 #define ZL_HTTPREQUEST_H
 #include "Define.h"
 #include "HttpProtocol.h"
+#include "Location.h"
 
 NAMESPACE_ZL_START
 
@@ -19,7 +20,7 @@ public:
     HttpMethod GetHttpMethod();
     void SetHttpMethod(HttpMethod method);
 
-	const std::string GetLocation(){ return path; }
+	const Location& GetLocation(){ return location; }
 
     const std::string& GetHttpVersion();
     void SetHttpVersion(const std::string& httpver);
@@ -61,7 +62,7 @@ protected:
     std::string contentType;
     int contentLength;
     HttpMethod method;
-	std::string path;
+	Location location;
 
     std::string version;
 

@@ -37,7 +37,7 @@ public:
 public:
 	virtual void Run();
 	virtual void Setopt(int level, int name, const char *value, int len);
-    virtual bool OnConnect(ClientData client);
+	virtual bool OnConnect(ClientData client);
     virtual bool Setup();
     virtual void Cleanup();
 	virtual int  Send(ZL_SOCKET socket, void *data, unsigned int length);
