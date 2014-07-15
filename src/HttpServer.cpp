@@ -39,7 +39,7 @@ bool HttpServer::OnConnect(ClientData client)
 		int length = Recv(client.socket_, buf, INBUF_SIZE, false);
 
 		/* ???????? ?? ?? */
-		if (length == -1) 
+		if (length == -1)
 			break;
 
 		buf[length] = '\0';
@@ -57,16 +57,20 @@ bool HttpServer::OnConnect(ClientData client)
 
 			for (int i = sidx; i < eidx; i++)
 			{
-				char dbcrlf[4] = {'\0'};
-				for (int j = 0; j < 4; j++)
+				int j;
+				for (j = 0; j < 4; j++)
 				{
-					dbcrlf[j] = cstr[i + j];
+					if (cstr[i + j] != DOUBLE_CRLF[j])
+						break;
 				}
-				if (strcmp(dbcrlf, DOUBLE_CRLF) == 0)
+
+				if (j == 4)
 				{
 					received = true;
+
 					document = header.substr(i + 4);
 					header = header.erase(i + 4);
+
 					break;
 				}
 			}
@@ -118,7 +122,7 @@ bool HttpServer::OnConnect(ClientData client)
 	response.SetConnectionType(request.GetConnection()); // close or keep-alive
 	response.SetHttpVersion(HTTP_VERSION_1_1);
 	response.SetStatusCode(HttpResponseCode::HttpStatusOk);
-	response.SetServerName("hi");	
+	response.SetServerName("hi");
 	response.SetLocation(request.GetLocation());
 	response.Compile();
 	//response.SetDocument("<h1>hi</h1>");
