@@ -149,22 +149,4 @@ bool HttpServer::SendResponse(SOCKET socket, HttpResponse& response)
 	return true;
 }
 
-void HttpServer::SetServerName(const std::string& _serverName)
-{
-	serverName = move(_serverName);
-}
-
-std::string& HttpServer::GetServerName()
-{
-	return serverName;
-}
-
-unsigned int HttpServer::GetRequestCount()
-{
-	unsigned int reqs = requestCounter.load(std::memory_order_acquire);
-
-	return reqs;
-}
-
-
 NAMESPACE_ZL_END
