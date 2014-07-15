@@ -2,9 +2,6 @@
 
 NAMESPACE_ZL_START
 
-static const char DoubleCrLf[] = "\r\n\r\n";
-static const char CrLf[] = "\r\n";
-
 HttpServer::HttpServer()
 {
 
@@ -60,20 +57,16 @@ bool HttpServer::OnConnect(ClientData client)
 
 			for (int i = sidx; i < eidx; i++)
 			{
-				int j;
-				for (j = 0; j < 4; j++)
+				char dbcrlf[4] = {'\0'};
+				for (int j = 0; j < 4; j++)
 				{
-					if (cstr[i + j] != DoubleCrLf[j])
-						break;
+					dbcrlf[j] = cstr[i + j];
 				}
-
-				if (j == 4)
+				if (strcmp(dbcrlf, DOUBLE_CRLF) == 0)
 				{
 					received = true;
-
 					document = header.substr(i + 4);
 					header = header.erase(i + 4);
-
 					break;
 				}
 			}

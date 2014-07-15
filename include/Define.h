@@ -36,7 +36,7 @@
 #define Safe_Delete_Array(p)  do { delete[] p; p = NULL; } while (0);
 
 #define ZL_NDEBUG 1
-#ifdef ZL_NDEBUG
+#ifdef  ZL_NDEBUG
 #define ZL_ASSERT(expr) ((void) 0)
 #define ZL_ASSERTEX(expr, file, lineno, func) ((void) 0)
 #else

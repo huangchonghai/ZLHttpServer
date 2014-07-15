@@ -6,9 +6,6 @@ using namespace std;
 
 NAMESPACE_ZL_START
 
-static const char DoubleCrLf[] = "\r\n\r\n";
-static const char CrLf[] = "\r\n";
-
 HttpResponse::HttpResponse()
 {
 }
@@ -28,10 +25,10 @@ bool HttpResponse::Compile()
     /* HttpVer / StatusCode / ReasonPhrase */
     header += GetHttpVersion() + " ";
     header += string(status) + " ";
-    header += ptable->GetReasonDesc( GetStatusCode() ) + CrLf;
+	header += ptable->GetReasonDesc(GetStatusCode()) + CRLF;
 
     /* Server */
-    header += "Server:" + GetServerName() + CrLf;
+	header += "Server:" + GetServerName() + CRLF;
 
     /* Content-type */
     header += "Content-type:" + GetContentType();
@@ -39,13 +36,13 @@ bool HttpResponse::Compile()
     /* Content-length */
     char contentLength[32];
     sprintf(contentLength, "%ul", GetContentLength());
-    header += "Content-length:" + string(contentLength) + CrLf;
+	header += "Content-length:" + string(contentLength) + CRLF;
 
     /* Connection */
-    header += "Connection:" + GetConnectionType() + CrLf;
+	header += "Connection:" + GetConnectionType() + CRLF;
 
     /* CrLf */
-    header += CrLf;
+	header += CRLF;
 
 	ReadBoby();
 

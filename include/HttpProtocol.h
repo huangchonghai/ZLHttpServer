@@ -15,11 +15,13 @@
 
 NAMESPACE_ZL_START
 
-#define CRLF  "\r\n"
-
 #define HTTP_VERSION_1_0      "HTTP/1.0"
 #define HTTP_VERSION_1_1      "HTTP/1.1"
 #define DEFAULT_HTTP_VERSION  "HTTP/1.1"
+
+#define CRLF                  "\r\n"
+#define DOUBLE_CRLF           "\r\n\r\n"
+
 
 enum HttpMethod
 {
