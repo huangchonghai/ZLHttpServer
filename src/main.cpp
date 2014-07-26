@@ -54,7 +54,7 @@ bool StartServer(const char *configPath)
 	//ZL::Monitor *monitor = new ZL::HttpMonitor(&server);
 	//monitor->Start();
 
-	server.Run();
+	server.Run("127.0.0.1", serverPort);
 
 	return true;
 }

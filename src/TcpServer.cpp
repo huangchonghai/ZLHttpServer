@@ -89,7 +89,7 @@ void TcpServer::Setopt(int level, int name, const char *value, int len)
 	ZL_SETSOCKOPT(socket_, level, name, value, len);
 }
 
-bool TcpServer::Setup()
+bool TcpServer::Setup(const char *ip, const unsigned short port)
 {
     zl_socket_startup();
 
@@ -102,8 +102,19 @@ bool TcpServer::Setup()
 
     memset(&addr_, 0, sizeof(addr_));
     addr_.sin_family = AF_INET;
-    addr_.sin_addr.s_addr = htonl(INADDR_ANY);
+    //addr_.sin_addr.s_addr = htonl(INADDR_ANY);
     addr_.sin_port = htons(port_);
+	int nIP = 0;
+	if (!ip || '\0' == *ip || 0 == strcmp(ip, "0") 
+		|| 0 == strcmp(ip, "0.0.0.0") || 0 == strcmp(ip, "*"))
+	{
+		nIP = htonl(INADDR_ANY);
+	}
+	else
+	{
+		nIP = inet_addr(ip);
+	}
+	addr_.sin_addr.s_addr = nIP;
 
     int optval = 1;
 	ZL_SETSOCKOPT(socket_, SOL_SOCKET, SO_REUSEADDR, (char *)&optval, sizeof(optval));
@@ -128,9 +139,9 @@ bool TcpServer::OnConnect(ClientData client)
 	return true;
 }
 
-void TcpServer::Run()
+void TcpServer::Run(const char *ip, const unsigned short port)
 {
-    if (!Setup())
+    if (!Setup(ip, port))
     {
         PrintError("setup failed");
         return;
@@ -144,8 +155,17 @@ void TcpServer::Run()
         /* accept */
 		ZL_SOCKET client = ZL_ACCEPT(socket_, (SOCKADDR *)&clientAddr, &clientAddrSize);
 
-        if (client == 0)
-            PrintError("accept error");
+		if (client == 0)
+		{
+			PrintError("accept error");
+		}
+		else
+		{
+			char tmpbuf[1024];
+			printf("accept one client : [%s:%d]\n",
+				inet_ntop(AF_INET, &clientAddr.sin_addr, tmpbuf, 1024),
+				ntohs(clientAddr.sin_port) );
+		}
 
         ClientData data =	{ client, clientAddr };
 		//auto &thd = std::thread([&](){ OnConnect(data); });

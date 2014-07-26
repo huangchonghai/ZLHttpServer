@@ -35,10 +35,10 @@ public:
     virtual ~TcpServer();        
     
 public:
-	virtual void Run();
+	virtual void Run(const char *ip, const unsigned short port);
 	virtual void Setopt(int level, int name, const char *value, int len);
 	virtual bool OnConnect(ClientData client);
-    virtual bool Setup();
+	virtual bool Setup(const char *ip, const unsigned short port);
     virtual void Cleanup();
 	virtual int  Send(ZL_SOCKET socket, void *data, unsigned int length);
 	virtual int  Recv(ZL_SOCKET socket, void *data, unsigned int length, bool complete = true);

@@ -33,15 +33,13 @@ bool HttpServer::OnConnect(ClientData client)
 	std::string document;
 	bool received = false;
 
+	//下面这个while循环是接收http请求头的，写得不好。
 	while (!received)
 	{
 		char buf[INBUF_SIZE + 1];
 		int length = Recv(client.socket_, buf, INBUF_SIZE, false);
-
-		/* ???????? ?? ?? */
 		if (length == -1)
 			break;
-
 		buf[length] = '\0';
 
 		header += buf;
